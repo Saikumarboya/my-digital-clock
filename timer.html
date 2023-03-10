@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="clock">
+        <div id="timer">00:00:00</div>
+        <div id="controlls">
+            <button id="start">start</button>
+            <button id="stop">stop</button>
+        </div>
+    </div>
+    <script>
+        const timerdisplay=document.querySelector('#timer')
+        const stopbtn=document.querySelector('#stop')
+        const startbtn=document.querySelector('#start')
+        let timertime=0;
+        let intervalId;
+        function starttime(){
+            intervalId=setInterval(()=>{
+                timertime++;
+                displaytime();
+
+            },1000);
+
+        }
+        function stoptimer(){
+            clearInterval(intervalId);
+        }
+        function displaytime(){
+            const seconds=timertime%60;
+            const minutes=Math.floor(timertime/60)%60;
+            const hours=Math.floor(timertime/3600);
+            timerdisplay.textContent= (hours<10?"0"+hours:hours)+":"+(minutes<10?"0"+minutes:minutes)+":"+(seconds<10?"0"+seconds:seconds)
+        }
+        startbtn.addEventListener('click',starttime);
+        stopbtn.addEventListener('click',stoptimer);
+    </script>
+</body>
+</html>
